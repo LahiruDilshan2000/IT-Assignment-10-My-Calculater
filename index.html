@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/styles/Styles.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+<main>
+    <section class="row">
+        <div class="col-12 h-auto m-0 p-0">
+            <div class="display">
+                <h5 id="h5"></h5>
+                <h1 id="h1">0</h1>
+            </div>
+        </div>
+        <section class="col-12 row w-100 numberPad">
+            <div class="myButton col-3 p-2">
+                <button type="button" class="top" id="ac" onclick="clearAll()">AC</button>
+            </div>
+            <div class="myButton col-3 p-2">
+                <button type="button" class="top" onclick="clearNumber()">C</button>
+            </div>
+            <div class="myButton col-3 p-2">
+                <button type="button" class="top" onclick="btnClock('%')">%</button>
+            </div>
+            <div class="myButton col-3 p-2">
+                <button type="button" class="right" onclick="btnClock('/')">/</button>
+            </div>
+            <div class="myButton col-3 p-2">
+                <button type="button" class="number" onclick="btnClock(7)">7</button>
+            </div>
+            <div class="myButton col-3 p-2">
+                <button type="button" class="number" onclick="btnClock(8)">8</button>
+            </div>
+            <div class="myButton col-3 p-2">
+                <button type="button" class="number" onclick="btnClock(9)">9</button>
+            </div>
+            <div class="myButton col-3 p-2">
+                <button type="button" class="right" onclick="btnClock('*')">x</button>
+            </div>
+            <div class="myButton col-3 p-2">
+                <button type="button" class="number" onclick="btnClock(4)">4</button>
+            </div>
+            <div class="myButton col-3 p-2">
+                <button type="button" class="number" onclick="btnClock(5)">5</button>
+            </div>
+            <div class="myButton col-3 p-2">
+                <button type="button" class="number" onclick="btnClock(6)">6</button>
+            </div>
+            <div class="myButton col-3 p-2">
+                <button type="button" class="right" onclick="btnClock('-')">-</button>
+            </div>
+            <div class="myButton col-3 p-2">
+                <button type="button" class="number" onclick="btnClock(1)">1</button>
+            </div>
+            <div class="myButton col-3 p-2">
+                <button type="button" class="number" onclick="btnClock(2)">2</button>
+            </div>
+            <div class="myButton col-3 p-2">
+                <button type="button" class="number" onclick="btnClock(3)">3</button>
+            </div>
+            <div class="myButton col-3 p-2">
+                <button type="button" class="right" onclick="btnClock('+')">+</button>
+            </div>
+            <div class="myButton col-6 p-2">
+                <button type="button" class="number" onclick="btnClock(0)">0</button>
+            </div>
+            <div class="myButton col-3 p-2">
+                <button type="button" class="number" onclick="btnClock('.')">.</button>
+            </div>
+            <div class="myButton col-3 p-2">
+                <button type="button" class="bottom" onclick="getResult()">=</button>
+            </div>
+        </section>
+
+        <div class="col-12 p-2"></div>
+    </section>
+</main>
+<script src="assets/lib/jquery-3.6.4.min.js"></script>
+<script>
+
+    function btnClock(num) {
+
+        let array = Array.from($('#h1').text());
+
+        array[array.length-1] == "/" && num ==  "/"||
+        array[array.length-1] == "-" && num == "-" ||
+        array[array.length-1] == "+" && num == "+" ||
+        array[array.length-1] == "*" && num == "*" ||
+        array[array.length-1] == "." && num == "." ? $('#h1').text($('#h1').text()) :
+            $('#h1').text() == '0' && num != '.' ? $('#h1').text(num) : $('#h1').text(($('#h1').text()) + num);
+
+    }
+
+    function clearAll(){
+
+        $('#h1').text("0");
+    }
+
+    function clearNumber(){
+
+        let x = Array.from($('#h1').text());
+        x.pop();
+        x.length != 0 ? $('#h1').text(x.join("")) : $('#h1').text("0");
+    }
+
+    function getResult(){
+        let s = eval($('#h1').text());
+        $('#h1').text(s);
+    }
+</script>
+</body>
+</html>
